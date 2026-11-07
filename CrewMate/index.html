@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101e2b" />
+  <meta name="description" content="CrewMate — 동승자들이 각자의 목적지를 관리하고 운전자는 운전에 집중하는 차량용 협업 앱 시연용 웹 프로토타입." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMjAiIGZpbGw9IiNkOWZiOGQiLz48cGF0aCBkPSJNMTMgMzhjMi04IDUtMTMgMTItMTNoMTRjNyAwIDEwIDUgMTIgMTNNMTMgMzhoMzh2OUgxM3oiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MmIyYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48Y2lyY2xlIGN4PSIyMiIgY3k9IjQ3IiByPSI0IiBmaWxsPSIjMTQyYjJhIi8+PGNpcmNsZSBjeD0iNDIiIGN5PSI0NyIgcj0iNCIgZmlsbD0iIzE0MmIyYSIvPjxwYXRoIGQ9Im0yNiAxNiA2LTYgNiA2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDJiMmEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+Cg==" />
+  <style>
+:root{--ink:#152332;--night:#101e2b;--night2:#162b39;--night3:#1c3544;--night-line:rgba(213,234,229,.12);--mint:#dafa96;--pale:#e9eef1;--mid:#6b7b86;--paper:#fff;--line:#d8e0e2;--danger:#e36a57;--success:#7de2b5;--yellow:#f3cb79}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e9eff0;color:var(--ink);font:14px/1.55 -apple-system,BlinkMacSystemFont,'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.42}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #b6c86f;outline-offset:3px}button{transition:background .16s,color .16s,border .16s}a{color:inherit}.hidden{display:none!important}.site{max-width:1510px;margin:0 auto;padding:0 42px}.site-header{min-height:95px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #d5dfe1}.brand{text-decoration:none;display:flex;gap:11px;align-items:center;font-size:24px;letter-spacing:-1.35px;font-weight:850;line-height:1}.brand-light{font-weight:500}.brand small{display:block;letter-spacing:2.05px;font-size:8px;color:#72828b;margin-top:7px;font-weight:800}.top-links{display:flex;align-items:center;gap:7px;background:#f8faf9;border:1px solid #e0e7e8;border-radius:50px;padding:6px}.top-link{background:transparent;border:0;border-radius:30px;padding:9px 17px;font-size:12px;color:#53626c;font-weight:750}.top-link.selected{color:#eff8f6;background:var(--night)}.icon-button{border:0;background:transparent;color:var(--ink);font-size:25px;line-height:1;padding:4px 11px}.intro{padding:46px 0 39px;display:flex;justify-content:space-between;align-items:end;gap:20px}.eyebrow,.section-eyebrow{font-size:10px;font-weight:850;letter-spacing:2px;color:#477365}.eyebrow{display:flex;align-items:center;gap:9px}.pulse-dot{display:inline-block;width:8px;height:8px;border-radius:100%;background:#58a68e;box-shadow:0 0 0 5px #c4e8dc}.intro h1{font-size:clamp(39px,4.15vw,65px);letter-spacing:-3.7px;font-weight:820;line-height:1.11;margin:19px 0 13px}.intro h1 em{font-style:normal;color:#379981}.intro p{color:#647680;margin:0;font-size:14px}.intro-side{text-align:right;color:#81919c;font-size:12px}.intro-side p{margin:14px 0 0}.intro-side b{color:#43535c}.pill{display:inline-flex;border-radius:100px;padding:7px 13px;font-weight:800;font-size:11px;letter-spacing:1px}.pill.dark{background:#d9e9e4;color:#477567}
+.workbench{display:grid;grid-template-columns:minmax(0,1.84fr) minmax(318px,.86fr);gap:22px;align-items:stretch}.vehicle-shell{background:var(--night);color:#eaf2f3;min-width:0;border-radius:26px;box-shadow:0 20px 55px rgba(19,43,50,.17);overflow:hidden;display:flex;flex-direction:column;min-height:690px}.vehicle-top{height:71px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--night-line);padding:0 26px;gap:12px}.vehicle-brand{display:flex;align-items:center;gap:10px}.car-icon{height:34px;width:34px;background:var(--mint);color:var(--night);font-size:21px;border-radius:11px;display:grid;place-items:center;font-weight:900}.vehicle-brand b{font-weight:820;letter-spacing:-.6px;font-size:17px;display:block;line-height:1.05}.vehicle-brand small{font-size:8px;font-weight:700;color:#7d9b9f;letter-spacing:1.5px}.vehicle-top-right{font-size:10px;letter-spacing:1px;font-weight:750;color:#9aaeb9;white-space:nowrap}.online-dot{display:inline-block;background:#90e6aa;width:7px;height:7px;border-radius:50%;margin-right:4px}.vdiv{display:inline-block;height:11px;width:1px;background:#42606d;vertical-align:middle;margin:0 9px}.vehicle-layout{display:grid;grid-template-columns:176px minmax(0,1fr);flex:1}.vehicle-sidebar{border-right:1px solid var(--night-line);padding:32px 12px 18px;display:flex;flex-direction:column;gap:6px}.sidebar-category{font-size:9px;letter-spacing:2px;color:#7b99a5;margin:0 14px 13px;font-weight:800}.nav-item{background:transparent;color:#91a8b3;border:1px solid transparent;width:100%;text-align:left;padding:12px 10px;border-radius:11px;font-size:11px;font-weight:750;display:flex;align-items:center;gap:9px;white-space:nowrap}.nav-item:hover{background:#223846;color:#fff}.nav-item.active{background:#273e48;color:#e7f4ef;border-color:#314d55}.nav-icon{font-size:18px;width:21px;text-align:center;line-height:1}.nav-count{background:#dbf68e;color:#16302a;border-radius:20px;min-width:19px;text-align:center;padding:2px 4px;font-size:10px;margin-left:auto}.sidebar-spacer{flex:1}.session-mini{background:#172c39;border:1px solid #27404b;border-radius:13px;padding:13px;color:#c5d5d8}.session-mini span,.session-mini small{display:block;color:#809ca6;font-size:10px}.session-mini b{display:block;font-size:13px;margin:5px 0;letter-spacing:.4px}.session-mini small{line-height:1.65}.vehicle-content{padding:30px 25px;min-width:0}.dashboard-greeting{display:flex;justify-content:space-between;align-items:start;gap:13px}.vehicle-content .section-eyebrow{color:#a4ddbb}.dashboard-greeting h2,.inside-heading h2{font-size:28px;letter-spacing:-1.25px;line-height:1.28;margin:8px 0 10px}.dashboard-greeting p,.inside-heading p{margin:0;color:#8fa7b1;font-size:11px}.status-pill{background:#203a38;color:#b5e9bc;border:1px solid #37534b;padding:7px 12px;border-radius:30px;font-size:10px;white-space:nowrap;font-weight:800}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:28px 0 20px;border:1px solid #2d4851;border-radius:15px;overflow:hidden}.metrics>div{padding:15px 18px;border-right:1px solid #2d4851;background:#142a36}.metrics>div:last-child{border:0}.metrics small{display:block;font-size:10px;color:#91a9b3}.metrics b{font-size:28px;letter-spacing:-1.6px;font-variant-numeric:tabular-nums}.metrics b span{font-size:12px;color:#a3c2be;letter-spacing:0;margin-left:4px;font-weight:600}.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);gap:14px}.glass-panel{background:#162d3a;border:1px solid #2e4754;border-radius:16px;padding:16px;min-width:0}.panel-top{display:flex;align-items:start;justify-content:space-between;gap:8px;min-height:50px}.panel-top h3{font-size:16px;letter-spacing:-.4px;margin:3px 0}.tiny-tag{color:#8fadb4;font-size:9px;border:1px solid #3c5560;padding:6px 8px;border-radius:8px;white-space:nowrap}.map-canvas{height:256px;position:relative;overflow:hidden;border-radius:12px;background:#1a3442;isolation:isolate}.map-canvas svg{height:100%;width:100%}.map-grid{stroke:#3a5360;opacity:.31;stroke-width:.6}.map-roads{fill:none;stroke:#51707a;stroke-width:3;stroke-linecap:round;opacity:.32}.map-water{fill:#253f4c}.map-route-glow{fill:none;stroke:#ddfa9a;opacity:.15;stroke-width:12;stroke-linejoin:round;stroke-linecap:round}.map-route-line{fill:none;stroke:#d9fb96;stroke-width:3.2;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:8 5}.map-label{font-size:10px;fill:#e9f4ef;font-weight:700;paint-order:stroke;stroke:#1a3442;stroke-width:3}.map-dot{fill:#c7f5d1;stroke:#1e3a45;stroke-width:2}.map-home{fill:#f4d69b;stroke:#1e3a45;stroke-width:2}.map-start{fill:#97aeb9;stroke:#1e3a45;stroke-width:2}.map-bottom{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:13px;color:#9eb4bb;font-size:9px}.mini-circle{display:inline-block;width:8px;height:8px;background:var(--mint);border-radius:20px;margin-right:5px}.mini-link{border:0;background:none;color:#d6f7ae;font-size:10px;font-weight:800;padding:3px}.stop-list{display:grid;gap:0;padding-top:7px;max-height:310px;overflow:auto}.stop-entry{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;min-height:64px}.stop-track{display:flex;flex-direction:column;align-items:center}.stop-number{width:21px;height:21px;flex-shrink:0;display:grid;place-items:center;background:#2b4b52;border-radius:50%;color:#d8fbaf;font-size:10px;font-weight:800;position:relative}.stop-entry.final .stop-number{background:#4b5640;color:#fae3a9}.stop-entry.done .stop-number{background:#375c52;color:#9abdb5}.stop-track::after{content:"";width:1px;background:#46616a;flex:1;margin-top:5px}.stop-entry:last-child .stop-track::after{display:none}.stop-label strong{font-size:12px;display:block;margin-bottom:1px}.stop-label p{margin:0;font-size:10px;color:#819fab}.stop-label .completed{color:#a5ddbd}.stop-label{padding-bottom:14px}.stop-actions{border-top:1px solid #34505d;margin-top:7px;padding-top:12px;display:grid;gap:9px}.cta-main{background:var(--mint);color:#112923;border:0;border-radius:10px;padding:11px 13px;font-size:12px;font-weight:830;width:100%}.cta-main:hover{background:#edffb8}.cta-second{background:#2a4855;border:1px solid #47616b;border-radius:10px;padding:10px;font-size:11px;color:#e4f3f3;width:100%;font-weight:750}.cta-second:hover{background:#36596a}.overview-lower{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:15px;background:#1d3641;border:1px solid #2c4b54;border-radius:14px;padding:12px}.notification-line{display:flex;align-items:center;gap:11px;min-width:0}.notification-icon{display:grid;place-items:center;background:#294b48;color:#c3f0c9;border-radius:10px;font-size:18px;flex-shrink:0;width:37px;height:37px}.notification-line strong{font-size:11px}.notification-line p{color:#91aeb6;font-size:10px;margin:2px 0 0}.secondary-dark{background:transparent;border:1px solid #55706b;color:#dbf6ca;padding:10px 11px;border-radius:10px;font-weight:750;font-size:10px;white-space:nowrap}.secondary-dark span{display:inline-flex;background:#dcf99b;color:#1e3429;border-radius:30px;width:17px;height:17px;align-items:center;justify-content:center;margin-left:4px}.inside-heading{margin:0 0 22px}.inside-heading h2{margin-top:10px}.people-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.person-card{background:#172e3c;border:1px solid #34505b;border-radius:15px;padding:17px}.person-card.dropped{opacity:.65}.person-name-row{display:flex;align-items:center;gap:10px}.person-avatar{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;font-weight:850;color:#23362d;font-size:14px;flex-shrink:0}.person-name-row strong{display:block;font-size:13px}.person-name-row small{color:#8bacb6;font-size:10px}.person-dest{font-size:12px;margin:14px 0;padding:10px;background:#223b49;border-radius:9px}.person-dest b{color:#e7f9c3}.permissions-title{font-size:9px;color:#83a6af;font-weight:800;letter-spacing:1.5px;margin-bottom:7px}.permission-row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:11px;color:#d5e6e9}.switch{border:1px solid #3b5b66;border-radius:25px;background:#344c5a;width:36px;height:21px;padding:2px;display:flex;align-items:center}.switch::after{content:"";width:15px;height:15px;border-radius:50%;background:#95a7b2;display:block;transition:transform .2s}.switch.on{background:var(--mint)}.switch.on::after{background:#263e31;transform:translateX(14px)}.insight-note,.warning-note{padding:14px 16px;border:1px solid #3b5761;border-radius:12px;color:#a8bfc4;background:#1c3541;font-size:11px;line-height:1.8;margin-top:18px}.warning-note{border-color:#78654c;color:#e8cfa9;background:#392f2c;margin-bottom:15px}.request-list,.song-list{display:grid;gap:10px}.request-card{background:#19313f;border:1px solid #3a5360;border-radius:14px;padding:16px}.request-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.request-top strong{font-size:13px}.request-top small{color:#a6bec3}.request-desc{font-size:12px;color:#dcebec;margin:10px 0}.request-tag{border-radius:20px;background:#334958;color:#d9f0e9;padding:4px 8px;font-size:10px}.request-tag.pending{background:#475031;color:#e6efad}.request-tag.rejected,.request-tag.expired{background:#514044;color:#ebb7b1}.request-tag.approved{background:#244c3f;color:#b5efcc}.request-cta{display:flex;gap:7px}.request-cta button{border:0;border-radius:8px;font-size:11px;padding:9px 14px;font-weight:800}.accept{background:#dbfa9c;color:#183a2d}.reject{background:#344c56;color:#e4eff1}.empty-state{text-align:center;padding:50px 20px;border:1px dashed #3a5660;border-radius:15px;color:#9bb4bc}.empty-state strong{display:block;color:#e8f2f3;font-size:16px;margin:10px 0 4px}.music-feature{display:flex;gap:17px;align-items:center;background:#203947;border-radius:16px;padding:18px;margin-bottom:16px}.album-art{width:115px;height:115px;border-radius:13px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(145deg,#c3f69c,#5b8f7f);color:#173b2d}.album-art span{font-size:48px;line-height:1}.album-art small{font-size:10px;font-weight:900;letter-spacing:1px;text-align:center;line-height:1.2}.music-feature h3{font-size:17px;letter-spacing:-.5px;margin:10px 0 5px}.music-feature p{font-size:11px;color:#a1b9bf;margin:0}.song-item{border:1px solid #324e5a;border-radius:11px;padding:13px;display:flex;align-items:center;gap:11px}.song-index{color:#a7c7bd;font-size:12px}.song-item strong{font-size:12px}.song-item p{font-size:10px;color:#8cabb5;margin:0}.song-item time{margin-left:auto;font-size:10px;color:#789ba3}
+.mobile-column{min-width:0;display:flex;flex-direction:column}.phone-topline{display:flex;justify-content:space-between;align-items:end;gap:8px;margin-bottom:15px;padding:0 4px}.phone-topline h2{font-size:20px;letter-spacing:-.8px;margin:4px 0 0}.small-caps{letter-spacing:1.3px;color:#87959b;font-weight:850;font-size:9px}.phone-frame{background:#121d26;padding:11px 10px 12px;border-radius:39px;box-shadow:0 18px 47px rgba(21,49,56,.20);min-height:690px;max-width:390px;margin:0 auto;width:100%;position:relative}.phone-camera{position:absolute;background:#121d26;width:100px;height:23px;border-radius:0 0 20px 20px;top:8px;left:50%;transform:translateX(-50%);z-index:2}.phone-content{background:#f7faf7;min-height:665px;border-radius:29px;overflow:hidden;padding:30px 19px 21px}.phone-home-indicator{width:94px;height:4px;border-radius:20px;background:#b3bbc0;margin:8px auto 0}.phone-header{display:flex;justify-content:space-between;align-items:center;padding:0 0 18px}.phone-logo{font-size:15px;font-weight:800;letter-spacing:-.5px}.phone-logo:first-letter{color:#2e977c}.phone-status{font-size:10px;font-weight:750;color:#308b72}.phone-welcome{background:#d6f4a5;position:relative;overflow:hidden;border-radius:17px;padding:19px 16px 21px;min-height:157px}.phone-welcome small{font-size:8px;font-weight:900;letter-spacing:1.5px;color:#52816a}.phone-welcome h3{margin:8px 0 6px;font-size:25px;line-height:1.15;letter-spacing:-1px;color:#173e30}.phone-welcome p{font-size:10px;color:#50765f;margin:0}.abstract-car{position:absolute;right:-14px;bottom:-4px;color:#37765e;width:155px;opacity:.74}.abstract-car svg{width:100%}.phone-person-row{display:flex;justify-content:space-between;align-items:center;margin:18px 0 12px;gap:7px}.phone-person-row label,.phone-actions-row label{font-size:11px;font-weight:800}.phone-person-row select{background:#e5ece8;border:0;padding:9px 12px;border-radius:9px;font-size:11px;font-weight:800;max-width:165px;min-width:0}.phone-destination{border:1px solid #dce6e2;border-radius:13px;background:#fff;padding:14px}.phone-destination small{font-size:9px;color:#6c9b8a;font-weight:900;letter-spacing:1.3px}.phone-dest-inner{display:flex;align-items:center;gap:10px;margin-top:6px}.dest-pin{width:35px;height:35px;border-radius:10px;background:#edf8d8;display:grid;place-items:center;color:#358463;font-size:23px;font-weight:800}.phone-dest-inner strong{font-size:15px}.phone-dest-inner p{margin:0;color:#96a4a6;font-size:10px}.phone-permissions{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 17px}.phone-permissions span{background:#e7f0e5;color:#477969;padding:5px 8px;font-size:9px;border-radius:6px;font-weight:800}.phone-permissions span.off{background:#f4e8e5;color:#a77f75}.phone-segment{background:#e6ede9;display:flex;padding:4px;gap:2px;border-radius:10px;margin-bottom:14px}.segment{background:transparent;border:0;flex:1;padding:8px 4px;font-size:10px;color:#81908a;font-weight:850;border-radius:8px}.segment.active{background:white;color:#224b3b;box-shadow:0 2px 7px #253f3610}.phone-label{display:block;font-size:10px;font-weight:850;margin:0 0 7px}.phone-select{background:white;border:1px solid #d6e3de;border-radius:10px;padding:11px 12px;width:100%;font-size:11px;color:#234535;font-weight:750}.phone-cta{display:flex;align-items:center;justify-content:space-between;width:100%;background:#193b34;color:#edfff4;border:0;border-radius:11px;padding:13px 14px;font-size:11px;font-weight:850;margin-top:10px}.phone-cta span{font-size:18px}.phone-feature-divider{height:1px;background:#e2e9e7;margin:16px 0 13px}.phone-actions-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.phone-actions-row span{font-size:9px;color:#669883}.phone-ghost{background:#f7faf7;color:#346350;width:100%;border:1px dashed #b4cbbb;border-radius:10px;padding:9px;font-size:11px;font-weight:750;margin-top:8px}.phone-info{display:flex;gap:9px;color:#58756b;background:#e7f2ed;border-radius:10px;padding:11px;margin-top:14px}.phone-info span{font-size:15px;color:#419772}.phone-info p{font-size:9px;line-height:1.6;margin:0}.mobile-footnote{background:white;border:1px solid #dbe4e5;border-radius:14px;padding:15px 17px;margin:15px 0 0}.mobile-footnote strong{font-size:11px}.mobile-footnote p{font-size:10px;color:#7f8d94;line-height:1.8;margin:5px 0 0}
+.bottom-demo{margin:36px 0 22px;background:#dce7e6;border:1px solid #cfdddc;border-radius:18px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:15px}.bottom-demo h2{margin:5px 0;font-size:18px;letter-spacing:-.6px}.demo-timeline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:#4f6b6d;font-size:11px;font-weight:750}.demo-timeline b{color:#82a69a}.outline-button{border:1px solid #a3bdb7;border-radius:11px;background:transparent;color:#366457;padding:10px 12px;white-space:nowrap;font-size:11px;font-weight:800}.site-footer{padding:9px 0 34px;display:flex;justify-content:space-between;gap:12px;color:#8a999d;font-size:10px;letter-spacing:.1px}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,30px);background:#153c34;color:#eaffd7;box-shadow:0 12px 40px #153b3452;border:1px solid #457465;padding:13px 19px;border-radius:12px;max-width:min(550px,92vw);z-index:10;font-weight:800;font-size:12px;opacity:0;pointer-events:none;transition:.25s}.toast.visible{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1200px){.site{padding:0 22px}.workbench{grid-template-columns:minmax(0,1.65fr) 325px;gap:16px}.vehicle-layout{grid-template-columns:146px minmax(0,1fr)}.nav-item{padding:12px 7px;font-size:10px}.vehicle-content{padding:22px 16px}.dashboard-grid{grid-template-columns:1fr}.map-canvas{height:185px}.stop-list{max-height:240px}.vehicle-shell{min-height:760px}}@media(max-width:900px){.site{padding:0 18px}.workbench{grid-template-columns:1fr}.vehicle-shell{min-height:0}.mobile-column{max-width:480px;margin:32px auto 0;width:100%}.phone-frame{max-width:360px}.intro{padding:35px 0 25px}.intro h1{font-size:45px}.bottom-demo{flex-wrap:wrap}.vehicle-shell{display:block}}@media(max-width:600px){.site{padding:0 12px}.site-header{min-height:73px}.brand{font-size:19px}.brand img{width:30px;height:30px}.brand small{font-size:6px;letter-spacing:1.3px}.top-links{padding:3px}.top-link{font-size:9px;padding:8px 9px}.top-reset{font-size:17px;padding:4px}.intro{padding:25px 3px;display:block}.intro-side{display:none}.intro h1{font-size:40px;letter-spacing:-2.2px;margin:14px 0}.intro p{font-size:12px}.vehicle-top{padding:0 13px;height:59px}.vehicle-top-right{font-size:8px}.vehicle-layout{grid-template-columns:1fr}.vehicle-sidebar{padding:6px;flex-direction:row;overflow-x:auto;gap:2px;border-right:0;border-bottom:1px solid var(--night-line)}.sidebar-category,.sidebar-spacer,.session-mini{display:none}.nav-item{font-size:9px;min-width:0;padding:8px 6px;white-space:nowrap;justify-content:center}.nav-icon{display:none}.nav-count{margin-left:2px}.vehicle-content{padding:21px 13px}.dashboard-greeting h2{font-size:25px}.dashboard-greeting p{font-size:10px}.metrics{margin:20px 0 13px}.metrics>div{padding:12px 8px}.metrics b{font-size:22px}.metrics small{font-size:9px}.dashboard-grid{gap:12px}.glass-panel{padding:14px}.map-canvas{height:230px}.overview-lower{flex-direction:column;align-items:stretch}.people-grid{grid-template-columns:1fr}.phone-topline{margin-top:0}.bottom-demo{padding:17px}.site-footer{flex-direction:column;padding-bottom:26px}.workbench{gap:0}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+</style>
+  <title>CrewMate — 함께 타고, 각자의 집까지</title>
+</head>
+<body>
+  <div class="site">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="CrewMate 홈"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMjAiIGZpbGw9IiNkOWZiOGQiLz48cGF0aCBkPSJNMTMgMzhjMi04IDUtMTMgMTItMTNoMTRjNyAwIDEwIDUgMTIgMTNNMTMgMzhoMzh2OUgxM3oiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MmIyYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48Y2lyY2xlIGN4PSIyMiIgY3k9IjQ3IiByPSI0IiBmaWxsPSIjMTQyYjJhIi8+PGNpcmNsZSBjeD0iNDIiIGN5PSI0NyIgcj0iNCIgZmlsbD0iIzE0MmIyYSIvPjxwYXRoIGQ9Im0yNiAxNiA2LTYgNiA2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDJiMmEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+Cg==" alt="" width="36" height="36"><span>Crew<span class="brand-light">Mate</span><small>CONNECTED RIDE EXPERIENCE</small></span></a>
+      <nav class="top-links" aria-label="화면 선택">
+        <button id="mode-driver" class="top-link selected" type="button">차량 디스플레이</button>
+        <button id="mode-passenger" class="top-link" type="button">동승자 휴대폰</button>
+        <button id="reset-all" class="icon-button top-reset" type="button" title="데모 초기화" aria-label="데모 초기화">↻</button>
+      </nav>
+    </header>
+
+    <div class="intro">
+      <div><div class="eyebrow"><span class="pulse-dot"></span> PLEOS CONNECT · INTERACTIVE CONCEPT</div><h1>함께 타고,<br><em>각자의 집까지.</em></h1><p>운전자는 운전에 집중하고, 동승자는 필요한 일을 함께 관리하는 새로운 귀갓길.</p></div>
+      <div class="intro-side"><span class="pill dark">DEMO v0.1</span><p>차량용 앱 UX를 보여주는<br><b>인터랙티브 웹 프로토타입</b>입니다.</p></div>
+    </div>
+
+    <main class="workbench" id="workbench">
+      <section class="vehicle-shell" id="vehicle-section" aria-label="차량용 메인 화면">
+        <div class="vehicle-top"><div class="vehicle-brand"><span class="car-icon">↗</span><div><b>CrewMate</b><small>CO-PILOT DASHBOARD</small></div></div><div class="vehicle-top-right"><span class="online-dot"></span> DEMO SESSION <span class="vdiv"></span> <span id="clock">21:20</span></div></div>
+        <div class="vehicle-layout">
+          <aside class="vehicle-sidebar" aria-label="차량 메뉴">
+            <div class="sidebar-category">DRIVE</div>
+            <button class="nav-item active" data-tab="overview"><span class="nav-icon">◫</span>운행 대시보드</button>
+            <button class="nav-item" data-tab="people"><span class="nav-icon">♙</span>동승자 · 권한</button>
+            <button class="nav-item" data-tab="requests"><span class="nav-icon">↗</span>변경 요청 <span class="nav-count" id="request-count">0</span></button>
+            <button class="nav-item" data-tab="music"><span class="nav-icon">♫</span>공동 음악</button>
+            <div class="sidebar-spacer"></div>
+            <div class="session-mini"><span>오늘의 귀가 세션</span><b id="session-code">CREW-2026</b><small>동승자 권한은 세션 종료 시 회수</small></div>
+          </aside>
+          <div class="vehicle-content">
+            <section id="tab-overview" class="tab-body">
+              <div class="dashboard-greeting"><div><div class="section-eyebrow">TONIGHT'S RIDE</div><h2>모두의 귀갓길을<br>한눈에.</h2><p>각자의 목적지를 모아, 운전자의 집까지 이어지는 경로를 구성합니다.</p></div><div class="status-pill" id="trip-status">● 출발 전</div></div>
+              <div class="metrics"><div><small>함께 타는 사람</small><b id="metric-passengers">03<span>명</span></b></div><div><small>남은 하차 지점</small><b id="metric-stops">03<span>곳</span></b></div><div><small>시연 경로 길이</small><b id="metric-distance">—<span>km</span></b></div></div>
+              <div class="dashboard-grid">
+                <article class="glass-panel map-panel"><div class="panel-top"><div><span class="section-eyebrow">SHARED ROUTE</span><h3>공동 귀가 경로</h3></div><span class="tiny-tag">개념 지도 · 실제 도로 아님</span></div><div class="map-canvas" id="route-map" role="img" aria-label="서울 주요 지점을 연결한 경로 개념도"></div><div class="map-bottom"><span><span class="mini-circle"></span>운전자 집은 항상 마지막</span><button class="mini-link" data-action="replan">경로 재추천 ↗</button></div></article>
+                <article class="glass-panel stops-panel"><div class="panel-top"><div><span class="section-eyebrow">DROP-OFF ORDER</span><h3>하차 순서</h3></div><span id="stop-total" class="tiny-tag">3 STOPS</span></div><div id="route-list" class="stop-list"></div><div class="stop-actions" id="stop-actions"></div></article>
+              </div>
+              <div class="overview-lower"><div class="notification-line"><span class="notification-icon">✦</span><div><strong id="overview-notice-title">운전은 운전자에게, 요청은 동승자에게</strong><p id="overview-notice">동승자가 휴대폰에서 요청하면 이 화면에 반영됩니다.</p></div></div><button class="secondary-dark" id="overview-request-btn" data-tab="requests">변경 요청 확인 <span id="overview-request-count">0</span></button></div>
+            </section>
+            <section id="tab-people" class="tab-body hidden"><div class="inside-heading"><div class="section-eyebrow">PASSENGER MANAGEMENT</div><h2>누가, 무엇을 조작할 수 있을까요?</h2><p>동승자에게 지도 제안과 음악 관리 권한을 개별적으로 부여합니다.</p></div><div class="people-grid" id="people-grid"></div><div class="insight-note">안전 설계 · 하차한 동승자의 모든 임시 권한은 자동 회수됩니다. 실제 차량의 시스템 권한을 변경하는 기능은 아직 연결되지 않았습니다.</div></section>
+            <section id="tab-requests" class="tab-body hidden"><div class="inside-heading"><div class="section-eyebrow">CONTROLLED COLLABORATION</div><h2>변경 요청을 한곳에서.</h2><p>동승자가 제안한 목적지 변경 또는 경유지 추가를 운전자가 확인합니다.</p></div><div class="warning-note">이 화면의 승인 버튼은 시연용입니다. 실제 주행 중 운전자에게 터치 조작을 요구하지 않도록 정차 조건 등을 적용해야 합니다.</div><div class="request-list" id="request-list"></div></section>
+            <section id="tab-music" class="tab-body hidden"><div class="inside-heading"><div class="section-eyebrow">SHARED PLAYLIST</div><h2>음악도 함께 고르는 길.</h2><p>허용된 동승자가 노래를 대기열에 추가하는 기능을 시뮬레이션합니다.</p></div><div class="music-feature"><div class="album-art"><span>♫</span><small>CREWMATE<br>DEMO MIX</small></div><div><span class="tiny-tag">공동 대기열</span><h3>우리의 귀갓길 플레이리스트</h3><p>실제 스트리밍·재생은 연동되지 않습니다.</p></div></div><div class="song-list" id="song-list"></div></section>
+          </div>
+        </div>
+      </section>
+
+      <aside class="mobile-column" id="phone-section" aria-label="동승자 휴대폰 시연">
+        <div class="phone-topline"><div><span class="section-eyebrow">PASSENGER APP</span><h2>동승자 화면</h2></div><span class="small-caps">MOBILE WEB</span></div>
+        <div class="phone-frame"><div class="phone-camera"></div><div class="phone-content">
+          <div class="phone-header"><div class="phone-logo">↗ <b>CrewMate</b></div><span class="phone-status">● 연결됨</span></div>
+          <div class="phone-welcome"><small>YOUR RIDE, YOUR SAY</small><h3>오늘 어디서<br>내릴까요?</h3><p>내 목적지는 내가 직접,<br>변경 요청은 간편하게.</p><div class="abstract-car" aria-hidden="true"><svg viewBox="0 0 170 90" fill="none"><path d="M18 56h133l-10-21c-3-6-8-9-16-9H56c-7 0-12 3-15 8L18 56Z" stroke="currentColor" stroke-width="3"/><path d="M24 58h127v17H24z" stroke="currentColor" stroke-width="3"/><path d="M46 77a11 11 0 1 0 22 0M117 77a11 11 0 1 0 22 0" stroke="currentColor" stroke-width="3"/><path d="M66 30 53 56h66l-12-27" stroke="currentColor" opacity=".55" stroke-width="2"/></svg></div></div>
+          <div class="phone-person-row"><label for="phone-person">현재 동승자</label><select id="phone-person" aria-label="시연할 동승자 선택"></select></div>
+          <div class="phone-destination"><small>MY DROP-OFF</small><div class="phone-dest-inner"><span class="dest-pin">⌖</span><div><strong id="phone-current-destination">사당역</strong><p id="phone-person-status">하차 준비 전</p></div></div></div>
+          <div class="phone-permissions" id="phone-permissions"><span>지도 제안 가능</span><span>음악 추가 가능</span></div>
+          <div class="phone-segment"><button class="segment active" type="button" data-request-type="destination">하차 장소 변경</button><button class="segment" type="button" data-request-type="waypoint">경유지 추가</button></div>
+          <label class="phone-label" for="phone-place">원하는 장소</label><select class="phone-select" id="phone-place"></select>
+          <button class="phone-cta" id="send-request" type="button">운전자에게 변경 요청 <span>↗</span></button>
+          <div class="phone-feature-divider"></div><div class="phone-actions-row"><label for="phone-song">공동 음악</label><span id="music-permission-hint">곡 추가 허용</span></div><select class="phone-select" id="phone-song"></select><button class="phone-ghost" id="add-song" type="button">+ 재생 대기열에 추가</button>
+          <div class="phone-info"><span>✳</span><p id="phone-help">운전자가 승인하면 변경 내용이 공유 경로에 반영됩니다.</p></div>
+        </div><div class="phone-home-indicator"></div></div>
+        <div class="mobile-footnote"><strong>실제 동작하는 화면 시안</strong><p>운전자 승인 · 경로 재계산 · 권한 회수를 직접 체험해 보세요. 서버·실제 블루투스·Pleos 연동은 아직 포함하지 않습니다.</p></div>
+      </aside>
+    </main>
+    <section class="bottom-demo"><div><span class="section-eyebrow">QUICK DEMO</span><h2>이 순서로 눌러보세요.</h2></div><div class="demo-timeline"><span>01 · 동승자 선택</span><b>→</b><span>02 · 경유지 요청</span><b>→</b><span>03 · 운전자 승인</span><b>→</b><span>04 · 하차 완료</span></div><button id="bottom-reset" class="outline-button" type="button">↻ 처음부터 다시</button></section>
+    <footer class="site-footer"><span>CREWMATE © 2026 · STANDALONE INTERACTIVE PROTOTYPE</span><span>비공식 기획 시안 · 현대자동차그룹 / Pleos 공식 앱 아님</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+/**
+ * CrewMate prototype domain logic.
+ * All route calculations are straight-line estimates for a CONCEPT DEMO only.
+ * Never use this data to navigate a real vehicle.
+ */
+const PLACES = Object.freeze({
+  '홍대입구역': {lat:37.5572,lon:126.9253},
+  '서울역': {lat:37.5547,lon:126.9706},
+  '사당역': {lat:37.4765,lon:126.9816},
+  '강남역': {lat:37.4979,lon:127.0276},
+  '잠실역': {lat:37.5133,lon:127.1001},
+  '성수역': {lat:37.5446,lon:127.0559},
+  '건대입구역': {lat:37.5404,lon:127.0692},
+  '교대역': {lat:37.4934,lon:127.0145},
+  '왕십리역': {lat:37.5615,lon:127.0377},
+  '신림역': {lat:37.4842,lon:126.9296},
+  '여의도역': {lat:37.5219,lon:126.9245},
+  '고속터미널역': {lat:37.5049,lon:127.0049},
+});
+
+const SONGS = Object.freeze([
+  {id:'song1',title:'오늘의 드라이브',artist:'CrewMate Demo',duration:'3:12'},
+  {id:'song2',title:'밤 공기',artist:'CrewMate Demo',duration:'2:48'},
+  {id:'song3',title:'집으로 가는 길',artist:'CrewMate Demo',duration:'3:36'},
+  {id:'song4',title:'같이 듣는 노래',artist:'CrewMate Demo',duration:'3:04'},
+]);
+
+function createInitialState() {
+  return {
+    revision:1,
+    sessionCode:'CREW-2026',
+    origin:'홍대입구역',
+    driverHome:'성수역',
+    stage:'ready',
+    activeStopId:null,
+    passengers:[
+      {id:'p1',name:'민지',initial:'민',color:'#b9f3d9',destination:'사당역',status:'onboard',permissions:{map:true,music:true},belongings:['가방','휴대폰']},
+      {id:'p2',name:'서연',initial:'서',color:'#f5c8ab',destination:'강남역',status:'onboard',permissions:{map:true,music:false},belongings:['지갑','이어폰']},
+      {id:'p3',name:'지수',initial:'지',color:'#c5c8ff',destination:'잠실역',status:'onboard',permissions:{map:true,music:true},belongings:['휴대폰','외투']},
+    ],
+    extraStops:[],
+    requests:[],
+    queue:[SONGS[0],SONGS[1]],
+    nextId:1,
+    activity:[{id:'evt0',text:'귀가 세션이 준비되었어요.',at:'DEMO'}],
+  };
+}
+
+function kmBetween(placeA,placeB){
+  const a=PLACES[placeA],b=PLACES[placeB];
+  if(!a||!b)throw new Error(`Unknown demo place: ${placeA} / ${placeB}`);
+  const radians=Math.PI/180;
+  const dLat=(b.lat-a.lat)*radians,dLon=(b.lon-a.lon)*radians;
+  const x=Math.sin(dLat/2)**2+Math.cos(a.lat*radians)*Math.cos(b.lat*radians)*Math.sin(dLon/2)**2;
+  return 6371*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+}
+
+/** Exact search of stop order up to 7 stops. Driver home is always last. */
+function optimizeRoute(state){
+  const passengers=state.passengers.filter(p=>p.status==='onboard').map(p=>({id:p.id,place:p.destination,person:p.name,kind:'passenger'}));
+  const extras=state.extraStops.map(s=>({id:s.id,place:s.place,person:s.requester,kind:'waypoint'}));
+  const stops=[...passengers,...extras];
+  if(stops.length>7)throw new Error('The demonstration supports up to 7 stops.');
+  let bestDistance=Infinity,best=[];
+  const visit=(place,left,path,total)=>{
+    if(total>=bestDistance)return;
+    if(!left.length){
+      const score=total+kmBetween(place,state.driverHome);
+      if(score<bestDistance){bestDistance=score;best=path;}
+      return;
+    }
+    left.forEach((s,i)=>visit(s.place,[...left.slice(0,i),...left.slice(i+1)],[...path,s],total+kmBetween(place,s.place)));
+  };
+  visit(state.origin,stops,[],0);
+  return {stops:best,distanceKm:Math.round(bestDistance*10)/10,finalDestination:state.driverHome};
+}
+
+function addRequest(state,personId,type,place){
+  const person=state.passengers.find(p=>p.id===personId&&p.status==='onboard');
+  if(!person)throw new Error('현재 탑승 중인 동승자만 요청할 수 있어요.');
+  if(!['destination','waypoint'].includes(type))throw new Error('잘못된 요청 유형이에요.');
+  if(!person.permissions.map)throw new Error('운전자가 지도 요청 권한을 허용하지 않았어요.');
+  if(!PLACES[place])throw new Error('지원되지 않는 데모 장소예요.');
+  const request={id:`req${state.nextId++}`,personId,personName:person.name,type,place,status:'pending'};
+  state.requests.unshift(request);
+  state.activity.unshift({id:`evt${state.nextId++}`,text:`${person.name}님의 ${type==='waypoint'?'경유지 추가':'하차 장소 변경'} 요청`,at:'방금'});
+  return request;
+}
+
+function decideRequest(state,requestId,approve){
+  const request=state.requests.find(r=>r.id===requestId);
+  if(!request||request.status!=='pending')throw new Error('처리할 수 없는 요청이에요.');
+  const person=state.passengers.find(p=>p.id===request.personId&&p.status==='onboard');
+  if(approve&&!person)throw new Error('이미 하차한 동승자의 요청은 승인할 수 없어요.');
+  if(approve){
+    if(request.type==='destination')person.destination=request.place;
+    else if(state.extraStops.length+state.passengers.filter(p=>p.status==='onboard').length<7)
+      state.extraStops.push({id:`waypoint${state.nextId++}`,place:request.place,requester:request.personName});
+    else throw new Error('시연 가능한 최대 경유지 수를 초과했어요.');
+  }
+  request.status=approve?'approved':'rejected';
+  state.activity.unshift({id:`evt${state.nextId++}`,text:`${request.personName}님의 요청 ${approve?'승인':'거절'}`,at:'방금'});
+}
+
+function completeDropoff(state,personId){
+  const person=state.passengers.find(p=>p.id===personId&&p.status==='onboard');
+  if(!person)throw new Error('현재 탑승 중인 동승자가 아니에요.');
+  person.status='dropped';
+  person.permissions={map:false,music:false};
+  for(const request of state.requests){if(request.personId===personId&&request.status==='pending')request.status='expired';}
+  state.activity.unshift({id:`evt${state.nextId++}`,text:`${person.name}님 하차 완료 · 공유 권한 회수`,at:'방금'});
+  if(state.passengers.every(p=>p.status==='dropped'))state.stage='completed';
+}
+
+function addSong(state,personId,songId){
+  const person=state.passengers.find(p=>p.id===personId&&p.status==='onboard');
+  if(!person||!person.permissions.music)throw new Error('음악 추가 권한이 없어요.');
+  const song=SONGS.find(s=>s.id===songId);
+  if(!song)throw new Error('노래를 찾을 수 없어요.');
+  state.queue.push({...song,queueId:`q${state.nextId++}`,by:person.name});
+  state.activity.unshift({id:`evt${state.nextId++}`,text:`${person.name}님이 공동 대기열에 곡을 추가했어요.`,at:'방금'});
+}
+
+function setPermission(state,personId,permission,enabled){
+  const person=state.passengers.find(p=>p.id===personId);
+  if(!person||person.status!=='onboard'||!['map','music'].includes(permission))throw new Error('권한 설정이 불가능해요.');
+  person.permissions[permission]=Boolean(enabled);
+  state.activity.unshift({id:`evt${state.nextId++}`,text:`${person.name}님의 ${permission==='map'?'경유지 제안':'음악'} 권한 ${enabled?'허용':'회수'}`,at:'방금'});
+}
+
+const $=id=>document.getElementById(id);
+const escapeHTML=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const storageKey='crewmate-demo-v01';
+let state=load();
+let tab='overview',requestType='destination',phoneId='p1',toastTimer;
+const storedView=new URLSearchParams(location.search).get('screen');
+let screen=storedView==='passenger'?'passenger':'driver';
+const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('crewmate-demo-events'):null;
+
+function load(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(storageKey));
+    if(saved&&saved.revision===1&&Array.isArray(saved.passengers)&&saved.passengers.length===3)return saved;
+  }catch{}
+  return createInitialState();
+}
+function save(){
+  try { localStorage.setItem(storageKey,JSON.stringify(state)); } catch { /* local-only preview works even when browser storage is blocked */ }
+  channel?.postMessage({type:'sync'});
+  render();
+}
+function notify(message){
+  const toast=$('toast');toast.textContent=message;toast.classList.add('visible');
+  window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>toast.classList.remove('visible'),3300);
+}
+function act(action){try{action();save();}catch(e){notify(e.message||'작업을 처리하지 못했어요.');}}
+function setTab(next){tab=next;render();}
+function route(){return optimizeRoute(state);}
+function active(){return state.passengers.filter(p=>p.status==='onboard');}
+function currentPerson(){return state.passengers.find(p=>p.id===phoneId)||state.passengers[0];}
+function placesOptions(selected){return Object.keys(PLACES).map(place=>`<option value="${escapeHTML(place)}" ${place===selected?'selected':''}>${escapeHTML(place)}</option>`).join('');}
+function getProjectedPoints(stops){
+ const sequence=[{place:state.origin,kind:'start'},...stops.map(s=>({place:s.place,kind:s.kind,person:s.person})),{place:state.driverHome,kind:'home'}];
+ const xMin=126.91,xMax=127.115,yMin=37.46,yMax=37.58;
+ return sequence.map(s=>({ ...s, x:24+(PLACES[s.place].lon-xMin)/(xMax-xMin)*326, y:176-(PLACES[s.place].lat-yMin)/(yMax-yMin)*137 }));
+}
+function drawMap(stops){
+ const nodes=getProjectedPoints(stops);
+ const routePath=nodes.map((n,i)=>`${i===0?'M':'L'} ${n.x.toFixed(1)} ${n.y.toFixed(1)}`).join(' ');
+ const grid=Array.from({length:11},(_,i)=>`<path class="map-grid" d="M${i*40} 0V240"/>`).join('')+Array.from({length:8},(_,i)=>`<path class="map-grid" d="M0 ${i*35}H400"/>`).join('');
+ const markup=nodes.map((p,i)=>`<g><circle class="${p.kind==='home'?'map-home':p.kind==='start'?'map-start':'map-dot'}" cx="${p.x}" cy="${p.y}" r="${p.kind==='home'?7:6}"/><text class="map-label" x="${p.x+(p.x>290?-7:8)}" y="${p.y-10}" text-anchor="${p.x>290?'end':'start'}">${escapeHTML(p.place)}</text></g>`).join('');
+ $('route-map').innerHTML=`<svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path class="map-water" d="M-10 128 C80 105 103 139 165 129 S300 99 410 120 L410 143 C289 125 248 148 172 153 S62 130 -10 152Z"/>${grid}<path class="map-roads" d="M-20 42 C45 79 90 20 145 50 S283 100 420 28 M25 235 C72 182 132 215 162 120 S268 48 402 79 M-10 177 C90 155 132 182 220 155 S330 158 410 182 M120 5 C150 60 192 99 218 240"/><path class="map-route-glow" d="${routePath}"/><path class="map-route-line" d="${routePath}"/>${markup}</svg>`;
+}
+function renderRoute(stops){
+ const list=stops.map((s,i)=>{
+   const p=state.passengers.find(person=>person.id===s.id);
+   return `<div class="stop-entry ${p?.status==='dropped'?'done':''}"><div class="stop-track"><span class="stop-number">${String(i+1).padStart(2,'0')}</span></div><div class="stop-label"><strong>${escapeHTML(s.place)}</strong><p>${s.kind==='waypoint'?`중간 경유 · ${escapeHTML(s.person)} 요청`:`${escapeHTML(s.person)} · 하차 장소`}</p></div></div>`;
+ }).join('');
+ const done=state.passengers.filter(p=>p.status==='dropped').length;
+ const doneMarkup=done?`<div style="padding:0 0 9px;font-size:10px;color:#97c9b9">✓ ${done}명 하차 완료 · 권한 자동 회수</div>`:'';
+ $('route-list').innerHTML=doneMarkup+list+`<div class="stop-entry final"><div class="stop-track"><span class="stop-number">⌂</span></div><div class="stop-label"><strong>${escapeHTML(state.driverHome)}</strong><p>운전자의 집 · 최종 목적지</p></div></div>`;
+ $('stop-total').textContent=`${stops.length} STOPS`;
+ const opts=state.stage==='ready'
+   ?'<button class="cta-main" data-action="start">귀가 운행 시작 →</button>'
+   :state.stage==='completed'
+    ?'<button class="cta-second" data-action="reset">새로운 귀가 세션 시작 ↻</button>'
+    :`<select id="drop-person" aria-label="하차 완료 대상 선택" style="width:100%;background:#23404b;color:#e5f3ef;border:1px solid #49616a;border-radius:9px;padding:9px;font-size:11px">${active().map(p=>`<option value="${p.id}">${escapeHTML(p.name)} · ${escapeHTML(p.destination)}</option>`).join('')}</select><button class="cta-main" data-action="drop">선택한 동승자 하차 완료 ✓</button>`;
+ $('stop-actions').innerHTML=opts;
+}
+function renderPeople(){
+ $('people-grid').innerHTML=state.passengers.map(p=>`<div class="person-card ${p.status==='dropped'?'dropped':''}"><div class="person-name-row"><div class="person-avatar" style="background:${p.color}">${escapeHTML(p.initial)}</div><div><strong>${escapeHTML(p.name)}</strong><small>${p.status==='dropped'?'하차 완료 · 모든 권한 회수':'현재 탑승 중'}</small></div></div><div class="person-dest">⌖ 하차 장소 <b>${escapeHTML(p.destination)}</b></div><div class="permissions-title">PERMISSION SETTINGS</div><div class="permission-row">지도 경유지 제안 <button class="switch ${p.permissions.map?'on':''}" data-permission="map" data-person="${p.id}" aria-label="${escapeHTML(p.name)}의 지도 권한" aria-pressed="${p.permissions.map}" ${p.status==='dropped'?'disabled':''}></button></div><div class="permission-row">음악 대기열 편집 <button class="switch ${p.permissions.music?'on':''}" data-permission="music" data-person="${p.id}" aria-label="${escapeHTML(p.name)}의 음악 권한" aria-pressed="${p.permissions.music}" ${p.status==='dropped'?'disabled':''}></button></div></div>`).join('');
+}
+function renderRequests(){
+ const pending=state.requests.filter(r=>r.status==='pending').length;
+ $('request-count').textContent=pending;
+ $('overview-request-count').textContent=pending;
+ $('request-list').innerHTML=state.requests.length?state.requests.map(r=>`<div class="request-card"><div class="request-top"><strong>${escapeHTML(r.personName)}님의 ${r.type==='waypoint'?'경유지 제안':'하차 장소 변경'}</strong><span class="request-tag ${r.status}">${({pending:'승인 대기',approved:'승인 완료',rejected:'거절됨',expired:'하차로 만료'})[r.status]}</span></div><div class="request-desc">⌖ ${escapeHTML(r.place)} ${r.type==='waypoint'?'경유지 추가':'새 하차 장소'}</div>${r.status==='pending'?`<div class="request-cta"><button class="accept" data-decision="yes" data-request="${r.id}">✓ 승인 및 경로 갱신</button><button class="reject" data-decision="no" data-request="${r.id}">거절</button></div>`:''}</div>`).join(''):'<div class="empty-state"><div style="font-size:28px">✧</div><strong>아직 변경 요청이 없어요.</strong><p>오른쪽 동승자 화면에서 경유지를 제안해보세요.</p></div>';
+ $('overview-notice-title').textContent=pending?`${pending}건의 변경 요청이 도착했어요.`:'운전은 운전자에게, 요청은 동승자에게';
+ $('overview-notice').textContent=pending?'정차 중에 확인하고 승인하거나 거절해 보세요.':'동승자가 휴대폰에서 요청하면 이 화면에 반영됩니다.';
+}
+function renderMusic(){
+ $('song-list').innerHTML=state.queue.map((s,i)=>`<div class="song-item"><span class="song-index">${String(i+1).padStart(2,'0')}</span><div><strong>${escapeHTML(s.title)}</strong><p>${escapeHTML(s.artist)}${s.by?' · '+escapeHTML(s.by)+' 추가':''}</p></div><time>${escapeHTML(s.duration)}</time></div>`).join('');
+}
+function renderPhone(){
+ if(!state.passengers.some(p=>p.id===phoneId))phoneId=state.passengers[0].id;
+ const p=currentPerson();
+ $('phone-person').innerHTML=state.passengers.map(item=>`<option value="${item.id}" ${item.id===phoneId?'selected':''}>${escapeHTML(item.name)}${item.status==='dropped'?' (하차)':''}</option>`).join('');
+ $('phone-current-destination').textContent=p.destination;
+ $('phone-person-status').textContent=p.status==='dropped'?'하차 완료 · 세션 종료':'동승자 공유 세션 참여 중';
+ $('phone-permissions').innerHTML=`<span class="${p.permissions.map?'':'off'}">${p.permissions.map?'✓ 지도 제안 허용':'✕ 지도 권한 없음'}</span><span class="${p.permissions.music?'':'off'}">${p.permissions.music?'✓ 음악 추가 허용':'✕ 음악 권한 없음'}</span>`;
+ $('phone-place').innerHTML=placesOptions('교대역');
+ $('phone-song').innerHTML=SONGS.map(s=>`<option value="${s.id}">${escapeHTML(s.title)}</option>`).join('');
+ const canMap=p.status==='onboard'&&p.permissions.map&&state.stage!=='completed';
+ const canMusic=p.status==='onboard'&&p.permissions.music&&state.stage!=='completed';
+ $('send-request').disabled=!canMap;
+ $('add-song').disabled=!canMusic;
+ $('music-permission-hint').textContent=canMusic?'곡 추가 허용':'추가 권한 없음';
+ $('phone-help').textContent=p.status==='dropped'?'하차가 확인되어 차량 공유 권한이 종료되었어요.':canMap?'운전자가 승인하면 변경된 장소가 공유 경로에 반영됩니다.':'지도를 제안할 권한이 없어요. 운전자가 권한을 변경할 수 있어요.';
+ document.querySelectorAll('[data-request-type]').forEach(button=>button.classList.toggle('active',button.dataset.requestType===requestType));
+}
+function render(){
+ const r=route();
+ $('metric-passengers').innerHTML=`${String(active().length).padStart(2,'0')}<span>명</span>`;
+ $('metric-stops').innerHTML=`${String(r.stops.length).padStart(2,'0')}<span>곳</span>`;
+ $('metric-distance').innerHTML=`${r.distanceKm.toFixed(1)}<span>km</span>`;
+ $('trip-status').textContent=state.stage==='ready'?'● 출발 전':state.stage==='completed'?'✓ 귀가 완료':'● 귀가 진행 중';
+ $('session-code').textContent=state.sessionCode;
+ drawMap(r.stops);renderRoute(r.stops);renderPeople();renderRequests();renderMusic();renderPhone();
+ document.querySelectorAll('[data-tab]').forEach(el=>el.classList.toggle('active',el.dataset.tab===tab));
+ document.querySelectorAll('.tab-body').forEach(el=>el.classList.toggle('hidden',el.id!==`tab-${tab}`));
+ $('mode-driver').classList.toggle('selected',screen==='driver');$('mode-passenger').classList.toggle('selected',screen==='passenger');
+ $('vehicle-section').style.display=screen==='passenger'?'none':'';
+ $('phone-section').style.display='';
+ $('workbench').style.gridTemplateColumns=screen==='passenger'?'minmax(300px, 440px)':'';
+ $('phone-section').style.margin=screen==='passenger'?'0 auto':'';
+ $('phone-section').style.maxWidth=screen==='passenger'?'440px':'';
+}
+function reset(){state=createInitialState();tab='overview';phoneId='p1';save();notify('데모가 처음 상태로 초기화되었어요.');}
+function confirmReset(){if(window.confirm('시연 데이터를 모두 초기화할까요?'))reset();}
+
+// Event delegation avoids stale handlers after UI rerenders.
+document.addEventListener('click',event=>{
+ const button=event.target.closest('button');if(!button)return;
+ if(button.id==='reset-all'||button.id==='bottom-reset'){confirmReset();return;}
+ if(button.id==='mode-driver'){screen='driver';render();return;}
+ if(button.id==='mode-passenger'){screen='passenger';render();$('phone-section').scrollIntoView({block:'start',behavior:'smooth'});return;}
+ if(button.dataset.tab){setTab(button.dataset.tab);return;}
+ if(button.dataset.requestType){requestType=button.dataset.requestType;renderPhone();return;}
+ if(button.dataset.permission){act(()=>{const p=state.passengers.find(x=>x.id===button.dataset.person);setPermission(state,p.id,button.dataset.permission,!p.permissions[button.dataset.permission]);});return;}
+ if(button.dataset.decision){act(()=>decideRequest(state,button.dataset.request,button.dataset.decision==='yes'));notify(button.dataset.decision==='yes'?'운전자가 요청을 승인했어요. 경로를 다시 계산했습니다.':'요청이 거절되었어요.');return;}
+ if(button.id==='send-request'){act(()=>addRequest(state,phoneId,requestType,$('phone-place').value));notify('변경 요청이 차량 화면에 전달되었어요.');return;}
+ if(button.id==='add-song'){act(()=>addSong(state,phoneId,$('phone-song').value));notify('공동 음악 대기열에 추가되었어요.');return;}
+ if(button.dataset.action==='replan'){render();notify('시연용 직선거리 경로를 다시 계산했어요.');return;}
+ if(button.dataset.action==='start'){act(()=>{state.stage='driving';state.activity.unshift({id:`evt${state.nextId++}`,text:'귀가 시연이 시작되었습니다.',at:'방금'});});notify('귀가 시연이 시작되었어요.');return;}
+ if(button.dataset.action==='drop'){const id=$('drop-person')?.value;if(!id)return;const name=state.passengers.find(p=>p.id===id)?.name;act(()=>completeDropoff(state,id));notify(`${name}님 하차 완료! 조작 권한이 자동으로 회수되었어요.`);return;}
+ if(button.dataset.action==='reset'){reset();return;}
+});
+$('phone-person').addEventListener('change',event=>{phoneId=event.target.value;renderPhone();});
+// Same-origin browser tabs synchronize for demo; separate devices require a backend.
+channel?.addEventListener('message',event=>{if(event.data?.type==='sync'){state=load();render();}});
+window.addEventListener('storage',event=>{if(event.key===storageKey){state=load();render();}});
+// Session clock: presentation-only clock, not a service timestamp.
+function updateClock(){const date=new Date();$('clock').textContent=`${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;}
+updateClock();window.setInterval(updateClock,60000);
+render();
+
+</script>
+</body>
+</html>

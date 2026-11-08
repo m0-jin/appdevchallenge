@@ -43,17 +43,7 @@ jobs:
             adb exec-out screencap -p > runtime-screenshots/main.png
             adb shell uiautomator dump /sdcard/crewmate-ui.xml >/dev/null
             adb pull /sdcard/crewmate-ui.xml runtime-screenshots/ui.xml >/dev/null
-            python3 - <<'PY'
-            import re, subprocess, xml.etree.ElementTree as ET
-            root=ET.parse('runtime-screenshots/ui.xml').getroot()
-            nodes=[n for n in root.iter('node') if '디자인 시안' in n.attrib.get('text','')]
-            if not nodes:
-                raise SystemExit('FAIL: Preview button not found in MainActivity UI')
-            b=nodes[0].attrib['bounds']
-            x1,y1,x2,y2=map(int,re.findall(r'\\d+',b))
-            subprocess.run(['adb','shell','input','tap',str((x1+x2)//2),str((y1+y2)//2)],check=True)
-            print('Clicked in-app Preview button at',((x1+x2)//2,(y1+y2)//2))
-            PY
+            python3 .github/scripts/crewmate-tap-preview.py
             sleep 6
             adb shell pidof io.crewmate.app | grep -Eq '[0-9]+' || { echo 'FAIL: PreviewActivity app process exited'; adb logcat -d -t 1500; exit 1; }
             adb shell dumpsys activity activities | grep -F 'io.crewmate.app/.PreviewActivity' || { echo 'FAIL: PreviewActivity not displayed'; exit 1; }

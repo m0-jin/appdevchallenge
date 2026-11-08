@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/crewmate-runtime-smoke.yml'
+      - '.github/scripts/crewmate-tap-preview.py'
 permissions:
   contents: read
 jobs:
